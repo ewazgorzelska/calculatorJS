@@ -1,0 +1,66 @@
+body {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+
+.wrapper_main {
+    height: 45vh;
+    width: 25vw;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#screen {
+    height: 6vh;
+    width: 23vw;
+}
+
+.wrapper_buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+    width: 23vw;
+}
+
+.wrapper_digits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1em;
+    row-gap: 1em;
+}
+
+.digits {
+    height: 6vh;
+    width: 5vw;
+    background-color: lightgrey;
+}
+
+.digits:last-child {
+    background-color: orange;
+}
+
+.wrapper_operators {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 1em;
+    row-gap: 1em;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.operators {
+    height: 6vh;
+    width: 5vw;
+    background-color: grey;
+    padding-bottom: 1em;
+}
