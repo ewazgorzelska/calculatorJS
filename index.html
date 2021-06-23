@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>Kalkulator</title>
+    <title>Calculator</title>
   </head>
   <body>
       <h1 class="title">Calculator</h1>
     <div class="wrapper_main">
-        <input id="screen" type="text">
+        <input id="screen" type="text" placeholder="0">
         <div class="wrapper_buttons">
           <div class="wrapper_digits">
             <button class="digits" type="text" value="1">1</button>
@@ -25,12 +25,13 @@
             <button class="digits" type="text" value="=">=</button>
           </div>
           <div class="wrapper_operators">
-            <button id="add" class="operators"><strong>+</strong></button>
-            <button id="substract" class="operators"><strong>-</strong></button>
-            <button id="multiply" class="operators"><strong>*</strong></button>
-            <button id="divide" class="operators"><strong>/</strong></button>
+            <button id="add" class="operators" value="+">+</button>
+            <button id="substract" class="operators" value="-">-</button>
+            <button id="multiply" class="operators" value="*">*</button>
+            <button id="divide" class="operators" value="/">/</button>
           </div>
         </div>
+        <button class="clear">AC</button>
     </div>
     <script type="text/javascript" src="index.js"></script>
   </body>

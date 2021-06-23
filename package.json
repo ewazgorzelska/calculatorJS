@@ -1,0 +1,19 @@
+{
+  "name": "calculatorjs",
+  "version": "1.0.0",
+  "description": "Frontend app to make basic calculations - VanillaJS, HTML, CSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ewazgorzelska/calculatorJS.git"
+  },
+  "author": "Ewa Zgorzelska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ewazgorzelska/calculatorJS/issues"
+  },
+  "homepage": "https://github.com/ewazgorzelska/calculatorJS#readme"
+}
