@@ -18,6 +18,7 @@ body {
 #screen {
     height: 6vh;
     width: 23vw;
+    text-align: right;
 }
 
 .wrapper_buttons {
@@ -54,17 +55,18 @@ body {
     
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
 .operators {
     height: 6vh;
     width: 5vw;
+    line-height: 6vh;
     background-color: grey;
     padding-bottom: 1em;
-    display: flex;
-    justify-content: center;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .clear {

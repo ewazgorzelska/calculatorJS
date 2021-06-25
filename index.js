@@ -1,13 +1,26 @@
 
+// buttons
 const digitsButtons = document.querySelectorAll('.digits');
 const screenInput = document.getElementById('screen');
-var numberIsClicked = false;
+const operatorsButtons = document.querySelectorAll('.operators');
+const clearButton = document.querySelector('.clear');
+const equalsButton = document.querySelector('.digits[value="="]');
 
-//callback functions
-let number = 0;
-let result = 0;
-let action = "";
-let newNumber = 0;
+//variables helpers
+const localStorage = window.localStorage;
+
+//array helpers
+const arrOfDigits = [];
+const arrOfSecondDigits = [];
+
+//function helpers
+function setInputValue(event) {
+    screenInput.value = event.target.value;
+}
+
+function setResultAsInputValue(result) {
+    screenInput.value = result;
+}
 
 const math_it_up = {
     '+': function (number, newNumber) { return number + newNumber },
@@ -16,57 +29,61 @@ const math_it_up = {
     '/': function (number, newNumber) { return number / newNumber },
 }
 
-document.addEventListener('click', function (event) {
+for (let i = 0; i < digitsButtons.length; i++) {
+    digitsButtons[i].addEventListener('click', function(event) {
+        const enteredValue = event.target.value;
 
-	if (event.target.matches('.digits') 
-        && !event.target.matches('.digits[value="="]') 
-        && !window.localStorage.getItem('number')) {
-            screenInput.setAttribute('placeholder', event.target.value);
-            window.localStorage.setItem('number', `${event.target.value}`);
-	    }
-
-    if (event.target.matches('.digits') 
-        && !event.target.matches('.digits[value="="]') &&
-        window.localStorage.getItem('number')) {
-            screenInput.setAttribute('placeholder', event.target.value);
-            window.localStorage.setItem('newNumber', `${event.target.value}`);
-    }
-
-    if (event.target.matches('.operators') 
-        && !event.target.matches('.digits[value="="]')) {
-            window.localStorage.setItem('action', `${event.target.value}`);
-            let action = window.localStorage.getItem('action');
-	}
-    if (event.target.matches('.digits[value="="]')) {
-        let number = parseInt(window.localStorage.getItem('number'));
-        let newNumber = parseInt(window.localStorage.getItem('newNumber'));
-        let action = window.localStorage.getItem('action');
-
-        switch (action) {
-            case '+':
-                result = math_it_up['+'](number, newNumber);
-                screenInput.setAttribute('placeholder', result);
-                break;
-            case '-':
-                result = math_it_up['-'](number, newNumber);
-                screenInput.setAttribute('placeholder', result);
-                break;
-            case '*':
-                result = math_it_up['*'](number, newNumber);
-                screenInput.setAttribute('placeholder', result);
-                break;
-            case '/':
-                result = math_it_up['/'](number, newNumber);
-                screenInput.setAttribute('placeholder', result);
-                break;
-            default:
-                screenInput.setAttribute('placeholder', 'Error')
+        if (localStorage.getItem('action')) {
+            setInputValue(event);
+            arrOfSecondDigits.push(enteredValue);
+            setInputValue(event);
+            screenInput.value = arrOfSecondDigits.join().replaceAll(",",'');
+            localStorage.setItem('secondNumber', `${screenInput.value}`);
+        } else {
+            arrOfDigits.push(event.target.value);
+            setInputValue(event);
+            screenInput.value = arrOfDigits.join().replaceAll(",",'');
+            localStorage.setItem('number', `${screenInput.value}`);
         }
+    })
+};
 
-	}
-    if (event.target.matches('.clear')) {
-        screenInput.setAttribute('placeholder','0');
-      window.localStorage.clear();
-    }
+for (let i = 0; i < operatorsButtons.length; i++) {
+    operatorsButtons[i].addEventListener('click', function(event) {
+        localStorage.setItem('action', `${event.target.value}`);
+    });
+}
 
-}, false);
+equalsButton.addEventListener('click', function(event) {
+    let number = parseInt(localStorage.getItem('number'));
+    let secondNumber = parseInt(localStorage.getItem('secondNumber'));
+    let action = localStorage.getItem('action');
+
+    switch (action) {
+        case '+':
+            result = math_it_up['+'](number, secondNumber);
+            setResultAsInputValue(result);
+            break;
+        case '-':
+            result = math_it_up['-'](number, secondNumber);
+            setResultAsInputValue(result);
+            break;
+        case '*':
+            result = math_it_up['*'](number, secondNumber);
+            setResultAsInputValue(result)
+            break;
+        case '/':
+            result = math_it_up['/'](number, secondNumber);
+            setResultAsInputValue(result);
+            break;
+        default:
+            screenInput.value = 'Error';
+            break;
+    }   
+})
+
+clearButton.addEventListener('click', function() {
+    window.localStorage.clear();
+    location.reload();
+});
+
