@@ -2,23 +2,27 @@ body {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;
+    font-size: 16px;    
 }
 
 .wrapper_main {
-    height: 60vh;
-    width: 25vw;
+    width: 25%;   
     border: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 3em;
 }
 
 #screen {
-    height: 6vh;
+    height: 4vh;
     width: 23vw;
     text-align: right;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 1em;
 }
 
 .wrapper_buttons {
@@ -33,24 +37,26 @@ body {
 .wrapper_digits {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 1em;
+    column-gap: 0.5em;
     row-gap: 1em;
 }
 
 .digits {
-    height: 6vh;
+    height: 4vh;
     width: 5vw;
     background-color: lightgrey;
+    border-radius: 10px;
 }
 
 .digits:last-child {
-    background-color: orange;
+    background: orange url('assets/equal.svg') no-repeat center;
+    background-size: 50px 20px;
+    border-radius: 10px;
 }
 
 .wrapper_operators {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    column-gap: 1em;
     row-gap: 1em;
     
     display: flex;
@@ -60,17 +66,153 @@ body {
 }
 
 .operators {
-    height: 6vh;
+    height: 4vh;
     width: 5vw;
     line-height: 6vh;
     background-color: grey;
     padding-bottom: 1em;
     display: table-cell;
     vertical-align: middle;
+    background: orange no-repeat center; 
+    background-size: 50px 20px;
+    border-radius: 10px;
+}
+
+.operators[value="+"] {
+    background-image:url('assets/add.svg');
+}
+
+.operators[value="-"] {
+    background-image:url('assets/substract.svg');
+}
+
+.operators[value="*"] {
+    background-image:url('assets/multiply.svg');
+}
+
+.operators[value="/"] {
+    background-image:url('assets/divide.svg');
 }
 
 .clear {
     width: 23vw;
     margin-top: 1em;
-    height: 6vh;
+    height: 4vh;
+    border-radius: 10px;
+    margin-bottom: 1em;
 }
+
+@media (min-width: 360px) {
+    .wrapper_main {
+        width: 90%;
+        height: 90%;   
+    }
+    .wrapper_buttons {
+        width: 90%;
+        margin-top: 3em;
+    }
+    .digits {
+        height: 7vh;
+        width: 17vw;
+    }
+    .operators {
+        height: 7vh;
+        width: 17vw;
+    }
+    #screen {
+        width: 90%;
+        margin-top: 1em;
+        height: 7vh;
+    }
+    .clear {
+        width: 90%;
+        margin-top: 1em;
+        height: 7vh;
+    }
+    button, input {
+        font-size: 50px;
+    }
+    .digits:last-child, .operators {
+        background-size: 70px 40px;
+    }
+    .wrapper_digits {
+        column-gap: 3em;
+        row-gap: 3em;
+    }
+    .wrapper_operators {
+        row-gap: 3em;
+    }
+ }
+
+@media (min-width: 992px ) {
+    .wrapper_main {
+        width: 70%; 
+    }
+    .wrapper_buttons {
+        width: 90%;
+        margin-top: 2em;
+    }
+    .digits, .operators {
+        height: 5vh;
+        width: 12vw;
+    }
+    #screen, .clear {
+        width: 90%;
+        margin-top: 1em;
+        height: 6vh;
+    }
+    button, input {
+        font-size: 30px;
+    }
+    .digits:last-child, .operators {
+        background-size: 40px 25px;
+    }
+    .wrapper_digits {
+        column-gap: 2em;
+        row-gap: 2em;
+    }
+    .wrapper_operators {
+        row-gap: 2em;
+    }
+ }
+
+ @media (min-width: 1200px) and (max-width: 1499px){
+    .wrapper_main {
+        width: 50%; 
+    }
+    .wrapper_buttons {
+        width: 90%;
+        margin-top: 2em;
+    }
+    .digits, .operators {
+        height: 7vh;
+        width: 9vw;
+    }
+    .wrapper_digits {
+        column-gap: 2em;
+        row-gap: 1em;
+    }
+    .wrapper_operators {
+        row-gap: 1em;
+    }
+ }
+ @media (min-width: 1500){
+    .wrapper_main {
+        width: 40%; 
+    }
+    .wrapper_buttons {
+        width: 90%;
+        margin-top: 2em;
+    }
+    .digits, .operators {
+        height: 6vh;
+        width: 8vw;
+    }
+    .wrapper_digits {
+        column-gap: 1em;
+        row-gap: 1em;
+    }
+    .wrapper_operators {
+        row-gap: 1em;
+    }
+ }

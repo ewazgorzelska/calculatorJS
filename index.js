@@ -41,7 +41,7 @@ function noDoubleFloatingPoint (array) {
 function addZeroBeforeFloatingPoint(array) {
     if (floatingPointClicked) {
         array.unshift('0');
-    }
+    };
 };
 
 function setFloatingPointState() {
