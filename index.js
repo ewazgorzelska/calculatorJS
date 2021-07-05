@@ -1,17 +1,16 @@
-
-// buttons
-const digitsButtons = document.querySelectorAll('.digits');
+(() => {
+    // buttons
+const digitsButtons = document.querySelectorAll('.digits[value]');
 const screenInput = document.getElementById('screen');
 const operatorsButtons = document.querySelectorAll('.operators');
 const clearButton = document.querySelector('.clear');
-const equalsButton = document.querySelector('.digits[value="="]');
-const floatingPoint = document.querySelector('.digits[value="."]');
-const allButtons = document.querySelectorAll('button');
+const equalsButton = document.querySelector('.digits:last-child');
 
 //helpers - variables
 const localStorage = window.localStorage;
 const operations = {
-    '+': function (number, secondNumber) { return number + secondNumber },
+    let result = 0;
+    '+': function (number, secondNumber) { return result += number + secondNumber; },
     '-': function (number, secondNumber) { return number - secondNumber },
     '*': function (number, secondNumber) { return number * secondNumber },
     '/': function (number, secondNumber) { return number / secondNumber },
@@ -84,7 +83,7 @@ for (let i = 0; i < operatorsButtons.length; i++) {
     });
 };
 
-equalsButton.addEventListener('click', function() {
+equalsButton.addEventListener('click', function(event) {
     let number = parseFloat(localStorage.getItem('number'));
     let secondNumber = parseFloat(localStorage.getItem('secondNumber'));
     let action = localStorage.getItem('action');
@@ -100,7 +99,7 @@ equalsButton.addEventListener('click', function() {
             break;
         case '*':
             result = operations['*'](number, secondNumber);
-            setResultAsInputValue(result)
+            setResultAsInputValue(result);
             break;
         case '/':
             result = operations['/'](number, secondNumber);
@@ -109,7 +108,7 @@ equalsButton.addEventListener('click', function() {
         default:
             screenInput.value = 'Error';
             break;
-    }   
+    };
 });
 
 clearButton.addEventListener('click', function() {
@@ -117,3 +116,4 @@ clearButton.addEventListener('click', function() {
     location.reload();
 });
 
+})();
